@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grow a Rainforest</title>
+
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css"
+            integrity="sha512-jQqzj2vHVxA/yCojT8pVZjKGOe9UmoYvnOuM/2sQ110vxiajBU+4WkyRs1ODMmd4AfntwUEV4J+VfM6DkfjLRg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            :root {
+                --game-width: 736px;
+                --game-height: 414px;
+                --grid-width: 500px;
+                --grid-height: 5000px;
+                --cell-size: 50px;
+                --grid-highlight: rgba(255, 255, 153, .5);
+
+                --toolbar-width: 80px;
+                --toolbar-padding: 5px;
+                --seed-display-width: 130px;
+                --seed-display-bg: #fff;
+                --seed-display-pointer-size: 25px;
+
+                --info-collapse: 30px;
+
+                --info-padding: 15px;
+                --title-padding: 30px;
+                --icon-small: 30px;
+                --icon-med: 40px;
+                --icon-large: 50px;
+                --req-height: 50px;
+                --font-size: 18pt;
+
+                --text-colour: #444;
+                --button-icon-colour: #888;
+                --info-bg-colour: #fff;
+                --ui-highlight: #ff8c1a;
+                /* --ui-highlight2: #ff8c1a; */
+
+                --thumb-size: 200px;
+
+                --entry-title-height: 100px;
+
+                --grow-duration: 10s;
+
+                --grass-colour: #ace600;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="grid-wrapper">
+            <grid- rows="25", cols="25"></grid->
+            <!-- <grid- rows="20", cols="30"></grid-> -->
+        </div>
+        <div id="toolbar">
+            <tool- id="inspector" class="tool"></tool->
+            <tool- id="axe" class="tool"></tool->
+            <tool- id="planter" class="tool"></tool->
+            <tool- id="unhighlight" class="tool hidden"></tool->
+            <seed-display id="seed-display" class="hidden"></seed-display>
+        </div>
+        <div id="info-drawer" class="info-collapsed">
+            <div id="slide-activator"><i class="fas fa-chevron-left"></i></div>
+            <div id="info-container">
+                <div id="encyclopedia">
+                    <div><h1>My Collection</h1></div>
+                    <thumb- species="eucalyptus"></thumb->
+                    <thumb- species="lilly pilly"></thumb->
+                    <thumb- species="birdwing vine"></thumb->
+                    <thumb- species="strangler fig"></thumb->
+                </div>
+                <entry- id="entry-container" class="entry-collapsed" species="eucalyptus"></entry->
+                </div>
+            </div>
+        </div>
+
+        <tutorial-></tutorial->
+        
+        
+        <script src="./elements/species.js"></script>
+        <script>
+            let currentSeed = 'eucalyptus'; // defines which tree the 'planter' tool places
+            let highlights = false; // true when any tile is highlighted, false when unhighlightAll is called
+            let tutIndex = 0; // keep track of which tutorial page you're on
+
+            let tutEntries = [
+                    `Welcome to Rainforest. This game is still in development, and is currently designed to be viewed with an iPhone8+ in landscape mode. Please open your browser's 'inspect' panel and change your browser window to this configuration before continuing.`,
+                    `Your rainforest begins as an empty field. You can plant trees with the 'planter' <i class="fas fa-seedling"></i> tool. Selecting it will open a window that lets you choose which tree to plant. Each tree has its own requirements for where it can be planted.`,
+                    `Some trees can only grow in moist soil. Moist soil is originally only found adjacent to a water source, but planting trees helps nearby soil to retain moisture.`,
+                    `After a while, trees will start to spread on their own. Some trees will even attract animals which will bring seeds from outside of the forest. When a new species is discovered this way, its encyclopedia entry will be completed and its seeds will be unlocked, so you can plant it yourself.`,
+                    `You can find information about each tree in the encyclopedia, including where they can be planted. The 'highlight' <i class="fas fa-eye"></i> tool will show you which tiles meet certain requirements. The highlights can be dismissed with the 'unhighlight' <i class="fas fa-eye-slash"></i> tool.`,
+                    `You can view information about a species by finding it in the encyclopedia or by tapping on it with the 'inspector' <i class="fas fa-search"></i> tool. You can also cut down a tree with the 'delete' <i class="fas fa-trash"></i> tool.`,
+                    `Have fun! Can you discover all the trees?`
+                ]
+
+            let infoDrawer = document.getElementById('info-drawer');
+            let toolbar = document.getElementById('toolbar');
+            let slideActivator = document.getElementById('slide-activator');
+            
+            // info slider
+            slideActivator.addEventListener('click', () => {
+                toggleEncyclopediaDrawer();
+            });
+
+            function toggleEncyclopediaDrawer() {
+                if (infoDrawer.classList.contains('info-collapsed')) {
+                    infoDrawer.classList.remove('info-collapsed');
+                    toolbar.classList.add('hidden');
+
+                    slideActivator.innerHTML = '<i class="fas fa-chevron-right">';
+                } else {
+                    infoDrawer.classList.add('info-collapsed');
+                    toolbar.classList.remove('hidden');
+
+                    slideActivator.innerHTML = '<i class="fas fa-chevron-left">';
+                }
+            }
+
+            function unhighlightAll() {
+                document.querySelectorAll('tile-').forEach(tile => {
+                    tile.classList.remove('highlight');
+                });
+                highlights = false;
+            }
+
+            function getSpeciesByName(name) {
+                    let matchFound = false;
+                    let species;
+
+                    speciesList.forEach(entry => {
+                        if (entry.name === name) {
+                            matchFound = true;
+                            species = entry;
+                            return;
+                        }
+                    });
+
+                    if (!matchFound) { console.log(`no match found for ${name} in getSpeciesByName`) }
+
+                    return species;
+                }
+
+        </script>
+        <script src="./elements/tree-.js"></script>
+        <script src="./elements/tile-.js"></script>
+        <script src="./elements/grid-.js"></script>
+        <script src="./elements/tool-.js"></script>
+        <script src="./elements/seed-display.js"></script>
+        <script src="./elements/thumb-.js"></script>
+        <script src="./elements/entry-.js"></script>
+        <script src="./elements/requisite-list.js"></script>
+        <script src="./elements/requisite-.js"></script>
+        <script src="./elements/tutorial-.js"></script>
+    </body>
+</html>

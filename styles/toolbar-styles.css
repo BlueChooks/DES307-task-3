@@ -1,0 +1,88 @@
+
+
+#toolbar {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 10px;
+    /* background-color: yellow; */
+    width: var(--toolbar-width);
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.tool {
+    z-index: 50;
+    width: calc(var(--toolbar-width) - (var(--toolbar-padding) * 2));
+    height: calc(var(--toolbar-width) - (var(--toolbar-padding) * 2));
+    border-radius: 50%;
+    /* border: 2px solid var(--ui-highlight-colour); */
+    background-color: #fff;
+    font-size: var(--icon-small);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 var(--text-colour);
+    color: var(--button-icon-colour);
+}
+
+/* ----- unhighlight ----- */
+#unhighlight {
+    position: fixed;
+    bottom: var(--info-padding);
+    left: var(--info-padding);
+}
+
+/* ===== seed display ===== */
+#seed-display {
+    background-color: var(--seed-display-bg);
+    display: block;
+    position: absolute;
+    /* bottom: 100%; */
+    right: calc(var(--seed-display-width) - 20px);
+    top: var(--info-padding);
+    width: var(--seed-display-width);
+    padding: 0 15px;
+    height: 110%;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 var(--text-colour);
+}
+
+ #seed-display > div:first-of-type {
+     background-color: var(--seed-display-bg);
+     width: var(--seed-display-pointer-size);
+     height: var(--seed-display-pointer-size);
+     display: block;
+     transform: rotate(45deg);
+     position: absolute;
+     bottom: 75px;
+     right: -10px;
+ }
+
+ #seed-display img {
+     max-width: 90%;
+ }
+
+ .seed-display-main {
+     height: 100%;
+     width: 100%;
+     /* border-radius: 20px; */
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+     text-align: center;
+     text-transform: capitalize;
+ }
+
+ .seed-display-main button {
+     font-size: var(--icon-small);
+     width: 100%;
+     background-color: transparent;
+     border: none;
+     color: var(--button-icon-colour);
+ }

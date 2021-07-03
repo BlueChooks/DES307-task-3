@@ -1,0 +1,120 @@
+/* ---=== slider ===--- */
+#info-drawer {
+    position: absolute;
+    right: 0;
+    width: calc(100% - var(--info-collapse));
+    height: 100%;
+    display: flex;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: 0 0 10px 0 var(--text-colour);
+    transition: .5s;
+}
+
+#slide-activator {
+    z-index: 9;
+    background-color: var(--info-bg-colour);
+    width: var(--info-collapse);
+    height: 100%;
+    display: block;
+    padding-left: 5px;
+    padding-top: 47vh;
+    font-size: var(--icon-small);
+    color: var(--button-icon-colour);
+    /* background-color: var(--ui-highlight1); */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;   
+}
+
+#info-drawer.info-collapsed #slide-activator {
+    padding-top: 70vh;
+}
+
+#info-container {
+    width: calc(100% - var(--info-collapse));
+    height: 100%;
+    display: flex;
+    background-color: var(--info-bg-colour);
+    position: relative;
+}
+
+/* ---=== encyclopedia ===--- */
+
+#encyclopedia {
+    z-index: 1;
+    position: absolute;
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+    padding: 0 var(--info-padding) 0 var(--info-padding);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: scroll;
+}
+
+#encyclopedia > div {
+    /* border: 1px solid black; */
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--info-padding);
+}
+
+thumb- {
+    /* border: 1px solid black; */
+    position: relative;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    display: block;
+}
+
+.thumbnail {
+    /* border: 2px solid var(--button-icon-colour); */
+    box-shadow: 0 0 10px 0 var(--button-icon-colour);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--thumb-size) - 20px);
+    height: calc(var(--thumb-size) - 20px);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.thumbnail > img {
+    height: 100%;
+}
+
+thumb- > .highlighter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: calc(var(--icon-med) + 10px);
+    font-size: var(--icon-med);
+}
+
+.highlighter, .requisite-dropper {
+    background-color: transparent;
+    border: none;
+    color: var(--text-colour);
+}
+
+.requisite-dropper {
+    color: var(--button-icon-colour);
+}
+
+.highlighter {
+    /* background-color: var(--info-bg-colour);
+    box-shadow: 0 0 10px 0 var(--text-colour);
+    border-radius: 50%; */
+}
+
+thumb- .highlighter {
+    width: 35%;
+    height: 35%;
+}
